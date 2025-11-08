@@ -2,22 +2,23 @@ package SolvingProblemOnArray;
 
 import java.util.Scanner;
 
-public class FindingMissingValues {
+public class MaxConsecutiveOne {
 
-        public static int missingNumber(int[] nums) {
+    public static int findMaxConsecutiveOnes(int[] nums) {
 
-            int sum=0;
-            int j=0;
-            for(int i = 1;i<=nums.length;i++){
-                sum = sum+nums[i-1];
-                j = j+i;
-
-            }
-            return j - sum;
-
+        int count = 0;
+        int maxRange = 0;
+        for (int num : nums) {
+            if (num == 1) {
+                 count++;
+                 maxRange = Math.max(maxRange, count);
+            } else count = 0;
         }
+        return maxRange;
+    }
 
-    public static void main(String []args){
+
+    public static void main(String[] args) {
         System.out.println("size of nums :");
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -26,14 +27,14 @@ public class FindingMissingValues {
             int b = sc.nextInt();
             nums[i] = b;
         }
-       int missingValue =  missingNumber(nums);
-        System.out.println("missing value "+ missingValue);
-    }}
+        int numberOfOne = findMaxConsecutiveOnes(nums);
+        System.out.println("Max number of consecutive ones" + numberOfOne);
+    }
+}
 
 /*
-268. Missing Number
-Solved(LeetCode)
-
-Given an array nums containing n distinct numbers in the range [0, n], return the only number in
-the range that is missing from the array
+485. Max Consecutive Ones(LeetCode)
+Solved
+Hint
+Given a binary array nums, return the maximum number of consecutive 1's in the array.
  */
